@@ -87,6 +87,7 @@ function nextQuestion() {
             if (i === q.a) correctCount++;
             else allCorrect = false;
             current++;
+            document.getElementById("progressBar").style.width = `${((current) / quizData.length) * 100}%`;
             nextQuestion();
         };
         optionsDiv.appendChild(btn);
@@ -100,7 +101,7 @@ function showResult() {
     const text = document.getElementById("finalText");
     const scoreText = document.getElementById("scoreText");
 
-    scoreText.innerText = `✅ ${correctCount} من ${quizData.length}`;
+    scoreText.innerText = `✅ ${correctCount}/${quizData.length}`;
 
     if (allCorrect) {
         text.innerText = "🎉 ممتاز! جميع الإجابات صحيحة";
