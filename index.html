@@ -12,6 +12,11 @@
     <h1>🏆 EduBreak</h1>
     <p class="subtitle">منصة مسابقات تفاعلية للحصص الاحتياط</p>
 
+    <!-- قسم اقتباس / حكم -->
+    <div class="quote">
+        "التعلم رحلة، استمتع بكل خطوة!" 🌟
+    </div>
+
     <!-- الصفحة الرئيسية -->
     <div id="home" class="grid">
         <div class="card" onclick="startQuiz('religious')"><img src="mosque.svg"><span>ديني</span></div>
@@ -24,10 +29,12 @@
 
     <!-- صفحة الاختبار -->
     <div id="quiz" class="hidden">
-        <div class="top-bar">
-            <span>⏱ الوقت: <b id="time">15</b> ثانية</span>
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
         </div>
-
+        <div class="top-bar">
+            ⏱ الوقت: <b id="time">15</b> ثانية
+        </div>
         <h2 id="question"></h2>
         <div id="options"></div>
     </div>
@@ -42,17 +49,14 @@
     <!-- قسم المعلمة -->
     <div id="teacher" class="hidden">
         <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
-
         <label>مدة الحصة:</label>
         <select id="lessonTime">
             <option value="10">10 دقائق</option>
             <option value="20">20 دقيقة</option>
             <option value="30">30 دقيقة</option>
         </select>
-
         <button onclick="suggest()">اقترح نشاط</button>
         <p id="result"></p>
-
         <button onclick="location.reload()">⬅️ رجوع</button>
     </div>
 
