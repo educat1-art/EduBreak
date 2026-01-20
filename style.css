@@ -1,55 +1,92 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4f6f8;
-    direction: rtl;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
 }
 
 header {
-    background-color: #4a90e2;
-    color: white;
-    text-align: center;
-    padding: 20px;
+    padding: 25px;
 }
 
-nav {
-    background-color: #ffffff;
-    padding: 10px;
-    text-align: center;
-}
-
-nav button {
-    margin: 5px;
-    padding: 10px 15px;
-    border: none;
-    background-color: #4a90e2;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-nav button:hover {
-    background-color: #357abd;
-}
-
-.content {
+.page {
     display: none;
-    padding: 20px;
+}
+
+.page.active {
+    display: block;
+}
+
+/* الصفحة الرئيسية */
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    width: 160px;
+    height: 160px;
     background: white;
-    margin: 15px;
-    border-radius: 8px;
-}
-
-button.option-btn {
-    margin: 5px;
-    padding: 8px 12px;
-    border: none;
-    background-color: #4caf50;
-    color: white;
+    color: #203a43;
+    border-radius: 50%;
     cursor: pointer;
-    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-button.option-btn:hover {
-    background-color: #45a049;
+.card:hover {
+    transform: scale(1.12);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+/* صفحة الأسئلة */
+.quiz-box {
+    background: white;
+    color: #333;
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 18px;
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+#options button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #eaeaea;
+    transition: background 0.3s;
+}
+
+#options button:hover {
+    background: #203a43;
+    color: white;
+}
+
+.nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
