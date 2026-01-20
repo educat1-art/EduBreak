@@ -1,60 +1,51 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
-  <meta charset="UTF-8">
-  <title>EduBreak | الحصة الاحتياط</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>EduBreak</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header>
-    <h1>🎓 EduBreak</h1>
-    <p>أنشطة تفاعلية للحصة الاحتياط</p>
-  </header>
 
-  <!-- الصفحة الرئيسية -->
-  <section id="home" class="active">
-    <div class="menu">
-      <div class="card" onclick="openQuiz('religion')">
-        ☪️
-        <span>ديني</span>
-      </div>
-      <div class="card" onclick="openQuiz('culture')">
-        📚
-        <span>ثقافي</span>
-      </div>
-      <div class="card" onclick="openQuiz('general')">
-        🧠
-        <span>عام</span>
-      </div>
+    <h1>🎯 EduBreak</h1>
+    <p class="subtitle">اختر القسم وابدأ التحدي</p>
+
+    <!-- الصفحة الرئيسية -->
+    <div id="home" class="container">
+        <div class="card" onclick="startQuiz('religious')">🕌<br>ديني</div>
+        <div class="card" onclick="startQuiz('culture')">📚<br>ثقافي</div>
+        <div class="card" onclick="startQuiz('education')">🧠<br>تعليمي</div>
+        <div class="card" onclick="startQuiz('fun')">🎮<br>ترفيهي</div>
+        <div class="card" onclick="startQuiz('skills')">🤝<br>مهاري</div>
+        <div class="card teacher" onclick="showTeacher()">👩‍🏫<br>قسم المعلمة</div>
     </div>
 
-    <button class="suggest-btn" onclick="openSuggestions()">💡 اقتراح للمعلمة</button>
-  </section>
-
-  <!-- صفحة الأسئلة -->
-  <section id="quiz">
-    <h2 id="question"></h2>
-    <div id="answers"></div>
-
-    <div class="nav">
-      <button onclick="nextQuestion()">➡️ التالي</button>
-      <button onclick="goHome()">🏠 الرئيسية</button>
+    <!-- صفحة الأسئلة -->
+    <div id="quiz" class="hidden">
+        <h2 id="question"></h2>
+        <div id="options"></div>
     </div>
-  </section>
 
-  <!-- صفحة الاقتراحات -->
-  <section id="suggestions">
-    <h2>💡 اقتراح للمعلمة</h2>
-    <textarea id="suggestText" placeholder="اكتبي اقتراحك أو فكرة نشاط..."></textarea>
-    <button onclick="submitSuggestion()">إرسال</button>
-    <button onclick="goHome()">رجوع</button>
-  </section>
+    <!-- صفحة المعلمة -->
+    <div id="teacher" class="hidden">
+        <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
 
-  <!-- الأصوات -->
-  <audio id="winSound" src="win.mp3"></audio>
-  <audio id="loseSound" src="lose.mp3"></audio>
+        <label>مدة الحصة (بالدقائق):</label>
+        <select id="time">
+            <option value="10">10 دقائق</option>
+            <option value="20">20 دقيقة</option>
+            <option value="30">30 دقيقة</option>
+        </select>
 
+        <button onclick="suggestActivity()">اقترح نشاط</button>
+        <p id="suggestion"></p>
+    </div>
+
+    <audio id="winSound" src="win.mp3"></audio>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
