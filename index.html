@@ -1,65 +1,79 @@
 <!DOCTYPE html>
 <html lang="ar">
-
 <head>
     <meta charset="UTF-8">
-    <title>EduBreak | موقع المسابقات</title>
+    <title>EduBreak | مسابقات تعليمية</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
-
 <body>
 
-    <header>
-        <h1>🎯 EduBreak</h1>
-        <p>حوّل الحصة الاحتياط إلى تحدي ذكي</p>
-    </header>
+<header>
+    <h1>🎯 EduBreak</h1>
+    <p>حوّل الحصة الاحتياط إلى تجربة تفاعلية</p>
+</header>
 
-    <!-- الصفحة الرئيسية -->
-    <section id="home" class="page active">
-        <div class="categories">
+<!-- الصفحة الرئيسية -->
+<section id="home" class="page active">
+    <div class="categories">
 
-            <div class="card" onclick="startSection('religion')">
-                <div class="icon">🕌</div>
-                <span>ديني</span>
-            </div>
-
-            <div class="card" onclick="startSection('culture')">
-                <div class="icon">📚</div>
-                <span>ثقافي</span>
-            </div>
-
-            <div class="card" onclick="startSection('education')">
-                <div class="icon">🧠</div>
-                <span>تعليمي</span>
-            </div>
-
-            <div class="card" onclick="startSection('fun')">
-                <div class="icon">🎮</div>
-                <span>ترفيهي</span>
-            </div>
-
-            <div class="card" onclick="startSection('skills')">
-                <div class="icon">🚀</div>
-                <span>مهاري</span>
-            </div>
-
+        <div class="card" onclick="startSection('religion')">
+            <div class="icon">🕌</div><span>ديني</span>
         </div>
-    </section>
 
-    <!-- صفحة المسابقة -->
-    <section id="quiz" class="page">
-        <div class="quiz-box">
-            <h2 id="question"></h2>
-            <div id="options"></div>
-
-            <div class="nav">
-                <button onclick="goHome()">⬅ الرجوع</button>
-                <span id="progress"></span>
-            </div>
+        <div class="card" onclick="startSection('culture')">
+            <div class="icon">📚</div><span>ثقافي</span>
         </div>
-    </section>
+
+        <div class="card" onclick="startSection('education')">
+            <div class="icon">🧠</div><span>تعليمي</span>
+        </div>
+
+        <div class="card" onclick="startSection('fun')">
+            <div class="icon">🎮</div><span>ترفيهي</span>
+        </div>
+
+        <div class="card" onclick="startSection('skills')">
+            <div class="icon">🚀</div><span>مهاري</span>
+        </div>
+
+        <div class="card teacher" onclick="openTeacher()">
+            <div class="icon">👩‍🏫</div><span>اقتراح للمعلمة</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- صفحة المسابقة -->
+<section id="quiz" class="page">
+    <div class="quiz-box">
+        <h2 id="question"></h2>
+        <div id="options"></div>
+        <p id="progress"></p>
+        <button onclick="goHome()">⬅ الرجوع</button>
+    </div>
+</section>
+
+<!-- صفحة المعلمة -->
+<section id="teacher" class="page">
+    <div class="quiz-box">
+        <h2>👩‍🏫 اقتراح النشاط</h2>
+
+        <label>مدة الحصة (بالدقائق):</label>
+        <input type="number" id="timeInput" placeholder="مثال: 20">
+
+        <button onclick="suggestActivity()">اقترح نشاط</button>
+
+        <h3 id="teacherResult"></h3>
+
+        <button onclick="goHome()">⬅ الرجوع</button>
+    </div>
+</section>
+
+<!-- الأصوات -->
+<audio id="correctSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_7c6c4c3e3b.mp3"></audio>
+<audio id="wrongSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_4bba3b4e22.mp3"></audio>
+<audio id="winSound" src="https://cdn.pixabay.com/audio/2022/10/25/audio_946b0b71f1.mp3"></audio>
 
 </body>
-
 </html>
