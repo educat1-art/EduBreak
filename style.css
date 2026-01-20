@@ -24,11 +24,11 @@ h1 {
 }
 
 .card {
-    background: white;
-    color: #333;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: white;
     border-radius: 50%;
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,8 @@ h1 {
     align-items: center;
     font-size: 40px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.5s;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .card img {
@@ -50,8 +51,8 @@ h1 {
 }
 
 .card:hover {
-    transform: scale(1.15);
-    background: #f1f1f1;
+    transform: scale(1.2) rotate(5deg);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
 }
 
 .teacher {
@@ -95,4 +96,14 @@ button {
     border-radius: 10px;
     cursor: pointer;
     margin-top: 15px;
+}
+
+#resultPage h2 {
+    font-size: 36px;
+    margin-top: 50px;
+}
+
+#scoreText {
+    font-size: 28px;
+    margin: 20px 0;
 }
