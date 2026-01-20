@@ -9,41 +9,47 @@
 
 <body>
 
-    <h1>🎯 EduBreak</h1>
-    <p class="subtitle">اختر القسم وابدأ التحدي</p>
+    <h1>🏆 EduBreak</h1>
+    <p class="subtitle">منصة مسابقات تفاعلية للحصص الاحتياط</p>
 
     <!-- الصفحة الرئيسية -->
-    <div id="home" class="container">
-        <div class="card" onclick="startQuiz('religious')">🕌<br>ديني</div>
-        <div class="card" onclick="startQuiz('culture')">📚<br>ثقافي</div>
-        <div class="card" onclick="startQuiz('education')">🧠<br>تعليمي</div>
-        <div class="card" onclick="startQuiz('fun')">🎮<br>ترفيهي</div>
-        <div class="card" onclick="startQuiz('skills')">🤝<br>مهاري</div>
-        <div class="card teacher" onclick="showTeacher()">👩‍🏫<br>قسم المعلمة</div>
+    <div id="home" class="grid">
+        <div class="card" onclick="initSound(); startQuiz('religious')">🕌<span>ديني</span></div>
+        <div class="card" onclick="initSound(); startQuiz('culture')">📚<span>ثقافي</span></div>
+        <div class="card" onclick="initSound(); startQuiz('education')">🧠<span>تعليمي</span></div>
+        <div class="card" onclick="initSound(); startQuiz('fun')">🎮<span>ترفيهي</span></div>
+        <div class="card" onclick="initSound(); startQuiz('skills')">🤝<span>مهاري</span></div>
+        <div class="card teacher" onclick="showTeacher()">👩‍🏫<span>للمعلمة</span></div>
     </div>
 
-    <!-- صفحة الأسئلة -->
+    <!-- المسابقة -->
     <div id="quiz" class="hidden">
+        <div class="top-bar">
+            <span>⭐ النقاط: <b id="score">0</b></span>
+            <span>⏱ الوقت: <b id="time">15</b></span>
+        </div>
+
         <h2 id="question"></h2>
         <div id="options"></div>
     </div>
 
-    <!-- صفحة المعلمة -->
+    <!-- المعلمة -->
     <div id="teacher" class="hidden">
         <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
 
-        <label>مدة الحصة (بالدقائق):</label>
-        <select id="time">
+        <select id="lessonTime">
             <option value="10">10 دقائق</option>
             <option value="20">20 دقيقة</option>
             <option value="30">30 دقيقة</option>
         </select>
 
-        <button onclick="suggestActivity()">اقترح نشاط</button>
-        <p id="suggestion"></p>
+        <button onclick="suggest()">اقترح نشاط</button>
+        <p id="result"></p>
+
+        <button onclick="location.reload()">⬅️ رجوع</button>
     </div>
 
-    <audio id="winSound" src="win.mp3"></audio>
+    <audio id="winSound" src="win.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
