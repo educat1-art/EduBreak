@@ -1,37 +1,29 @@
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
     color: white;
     text-align: center;
 }
 
-header {
-    padding: 25px;
-}
+header { padding: 20px; }
 
-.page {
-    display: none;
-}
+.page { display: none; }
+.page.active { display: block; }
 
-.page.active {
-    display: block;
-}
-
-/* الصفحة الرئيسية */
 .categories {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
+    gap: 25px;
+    margin-top: 40px;
 }
 
 .card {
     width: 160px;
     height: 160px;
     background: white;
-    color: #203a43;
+    color: #2a5298;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -39,54 +31,39 @@ header {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
 }
 
-.card:hover {
-    transform: scale(1.12);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
+.card:hover { transform: scale(1.15); }
 
-.icon {
-    font-size: 55px;
-    margin-bottom: 10px;
-}
+.teacher { background: #ffeb3b; }
 
-/* صفحة الأسئلة */
+.icon { font-size: 50px; margin-bottom: 10px; }
+
 .quiz-box {
     background: white;
     color: #333;
-    max-width: 650px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 18px;
-}
-
-#question {
-    margin-bottom: 20px;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 15px;
 }
 
 #options button {
-    display: block;
     width: 100%;
-    margin: 10px 0;
-    padding: 14px;
-    font-size: 16px;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
-    background: #eaeaea;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
-#options button:hover {
-    background: #203a43;
-    color: white;
-}
+.correct { background: #4caf50 !important; color: white; }
+.wrong { background: #f44336 !important; color: white; }
 
-.nav {
-    margin-top: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 15px 0;
 }
