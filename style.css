@@ -1,187 +1,183 @@
-/* الخط العام */
 body {
-  font-family: 'Tajawal', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-  color: #1a202c;
+    font-family: 'Tajawal', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f4f8;
+    color: #1a202c;
 }
 
-/* العنوان والصفحة الرئيسية */
 h1 {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 3em;
-  color: #4f46e5;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 3em;
+    color: #4f46e5;
 }
 
 .subtitle {
-  text-align: center;
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  color: #6b7280;
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #6b7280;
 }
 
 .quote {
-  text-align: center;
-  font-size: 1.1em;
-  margin-bottom: 40px;
-  color: #374151;
-  font-style: italic;
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    font-style: italic;
+    color: #374151;
 }
 
 /* شبكة البطاقات */
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 0 20px 50px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px 50px 20px;
 }
 
 .card {
-  background: #fff;
-  width: 150px;
-  height: 150px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+    background: #fff;
+    width: 130px;
+    height: 130px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 10px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
 }
 
 .card span {
-  font-weight: bold;
-  font-size: 1.1em;
-  text-align: center;
-  color: #1f2937;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+    color: #1f2937;
 }
 
-/* زر المعلمة */
 .card.teacher {
-  background: #fbbf24;
-  color: #fff;
+    background: #fbbf24;
+    color: #fff;
 }
 
 /* صفحة الأسئلة */
 #quiz {
-  padding: 20px;
-  text-align: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.backBtn {
+    background-color: #6b7280;
+    color: #fff;
+    margin-bottom: 15px;
 }
 
 #question {
-  font-size: 1.5em;
-  margin-bottom: 20px;
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
 #options button {
-  display: block;
-  width: 250px;
-  margin: 10px auto;
-  padding: 12px 0;
-  font-size: 1.1em;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background-color: #4f46e5;
-  color: white;
-  transition: background 0.3s;
+    display: block;
+    width: 220px;
+    margin: 8px auto;
+    padding: 12px 0;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #4f46e5;
+    color: white;
+    transition: background 0.3s;
 }
 
 #options button:hover {
-  background-color: #4338ca;
+    background-color: #4338ca;
 }
 
-/* Feedback */
 #feedback {
-  margin-top: 20px;
-  font-size: 1.3em;
-  font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 /* النتيجة النهائية */
 #resultPage {
-  text-align: center;
-  padding: 30px;
+    text-align: center;
+    padding: 30px;
 }
 
 #scoreText {
-  font-size: 2em;
-  margin: 20px 0;
-  color: #16a34a;
+    font-size: 2em;
+    margin: 20px 0;
+    color: #16a34a;
 }
 
-/* زر إعادة */
 button {
-  cursor: pointer;
-  padding: 10px 25px;
-  font-size: 1em;
-  border: none;
-  border-radius: 15px;
-  background-color: #4f46e5;
-  color: #fff;
-  margin-top: 15px;
-  transition: background 0.3s;
+    cursor: pointer;
+    padding: 10px 25px;
+    font-size: 1em;
+    border: none;
+    border-radius: 12px;
+    background-color: #4f46e5;
+    color: #fff;
+    margin-top: 15px;
 }
 
 button:hover {
-  background-color: #4338ca;
+    background-color: #4338ca;
 }
 
-/* قسم المعلمة */
 #teacher select {
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 10px;
-  border: 1px solid #d1d5db;
-  margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 10px;
 }
 
 #teacher p {
-  margin-top: 15px;
-  font-size: 1.1em;
-  color: #374151;
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #374151;
 }
 
-/* شريط التقدم */
 #progressBarContainer {
-  width: 80%;
-  background-color: #e5e7eb;
-  border-radius: 10px;
-  margin: 0 auto 20px auto;
-  height: 15px;
-  overflow: hidden;
+    width: 80%;
+    background-color: #e5e7eb;
+    border-radius: 10px;
+    margin: 0 auto 20px auto;
+    height: 15px;
+    overflow: hidden;
 }
 
 #progressBar {
-  height: 100%;
-  width: 0%;
-  background-color: #4f46e5;
-  transition: width 0.3s;
+    height: 100%;
+    width: 0%;
+    background-color: #4f46e5;
+    transition: width 0.3s;
 }
 
-/* شريط الوقت */
 .top-bar {
-  font-size: 1.2em;
-  margin-bottom: 15px;
-  color: #1f2937;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #1f2937;
 }
 
-/* أخفاء العناصر */
 .hidden {
-  display: none;
+    display: none;
 }
