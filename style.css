@@ -6,193 +6,100 @@
 body {
   margin: 0;
   padding: 20px;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
   text-align: center;
-  min-height: 100vh;
 }
 
-/* العنوان */
-h1 {
-  font-size: 3rem;
-  margin-bottom: 5px;
-}
+.hidden { display: none; }
 
-.subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin-bottom: 15px;
-}
+h1 { font-size: 3rem; }
+
+.subtitle { opacity: 0.9; }
 
 .quote {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.2);
   padding: 15px;
-  border-radius: 12px;
-  margin: 20px auto 35px;
+  border-radius: 15px;
+  margin: 20px auto;
   max-width: 500px;
-  font-size: 1.1rem;
 }
 
-/* شبكة الصفحة الرئيسية */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
   gap: 20px;
   max-width: 900px;
   margin: auto;
 }
 
-/* البطاقات */
 .card {
-  background: linear-gradient(145deg, #1f4068, #1b1b2f);
+  background: #fff;
+  color: #333;
   border-radius: 22px;
-  padding: 22px 10px;
+  padding: 25px 10px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: 0.3s;
 }
 
-.card:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-}
+.card:hover { transform: scale(1.07); }
 
-.card img {
-  width: 70px;
-  height: 70px;
-  margin-bottom: 12px;
-}
-
-.card span {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
+.card img { width: 70px; margin-bottom: 10px; }
 
 .card.teacher {
-  background: linear-gradient(145deg, #8e44ad, #5e3370);
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
 }
 
-/* إخفاء العناصر */
-.hidden {
-  display: none;
-}
-
-/* صفحة الأسئلة */
-#quiz {
-  max-width: 650px;
-  margin: auto;
-  background: rgba(255,255,255,0.08);
+#quiz, #resultPage, #teacher {
+  background: #fff;
+  color: #333;
   padding: 30px;
   border-radius: 25px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+  max-width: 600px;
+  margin: auto;
 }
 
-.top-bar {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-}
-
-/* شريط التقدم */
-#progressBarContainer {
-  width: 100%;
-  background: rgba(255,255,255,0.15);
-  height: 10px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
-
-#progressBar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #00f260, #0575e6);
-  border-radius: 20px;
-  transition: width 0.4s ease;
-}
-
-/* السؤال */
-#question {
-  font-size: 1.6rem;
-  margin-bottom: 25px;
-}
-
-/* الخيارات */
 #options {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2,1fr);
   gap: 15px;
 }
 
 .option-btn {
-  background: linear-gradient(135deg, #11998e, #38ef7d);
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   border: none;
-  border-radius: 18px;
-  padding: 18px 15px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.option-btn:hover {
-  transform: scale(1.07);
-  background: linear-gradient(135deg, #38ef7d, #11998e);
-}
-
-/* Feedback */
-#feedback {
-  margin-top: 25px;
-  font-size: 1.4rem;
-  background: rgba(0,0,0,0.4);
   padding: 18px;
   border-radius: 18px;
-}
-
-/* صفحة النتيجة */
-#resultPage {
-  background: rgba(255,255,255,0.08);
-  padding: 40px;
-  border-radius: 25px;
-  max-width: 500px;
-  margin: auto;
-}
-
-#scoreText {
-  font-size: 2rem;
-  margin: 20px 0;
-}
-
-/* الأزرار */
-button {
-  background: linear-gradient(135deg, #f7971e, #ffd200);
-  border: none;
-  padding: 14px 28px;
   font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 30px;
   cursor: pointer;
-  transition: transform 0.2s;
 }
 
-button:hover {
-  transform: scale(1.1);
+.option-btn:hover { transform: scale(1.05); }
+
+#feedback {
+  margin-top: 20px;
+  font-size: 1.4rem;
 }
 
-/* قسم المعلمة */
-#teacher {
-  background: rgba(255,255,255,0.08);
-  padding: 35px;
-  border-radius: 25px;
-  max-width: 500px;
-  margin: auto;
+#progressBarContainer {
+  background: #ddd;
+  height: 10px;
+  border-radius: 10px;
 }
 
-select {
-  padding: 12px;
-  font-size: 1.1rem;
-  border-radius: 12px;
+#progressBar {
+  background: #667eea;
+  height: 100%;
+  width: 0%;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 30px;
   border: none;
-  margin: 15px 0;
-  width: 80%;
+  background: #667eea;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
