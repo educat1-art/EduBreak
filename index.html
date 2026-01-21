@@ -25,6 +25,13 @@
         <div class="card teacher" onclick="showTeacher()"><img src="teacher.svg"><span>للمعلمة</span></div>
     </div>
 
+    <!-- صور الفصول أو نشاطات أسفل الصفحة الرئيسية -->
+    <div class="classImages">
+        <img src="class1.jpg" alt="فصل 1">
+        <img src="class2.jpg" alt="فصل 2">
+        <img src="class3.jpg" alt="فصل 3">
+    </div>
+
     <!-- صفحة الأسئلة -->
     <div id="quiz" class="hidden">
         <button class="backBtn" onclick="backHome()">⬅ الأقسام</button>
@@ -47,13 +54,15 @@
     <!-- قسم المعلمة -->
     <div id="teacher" class="hidden">
         <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
-        <select id="lessonTime">
-            <option value="10">10 دقائق</option>
-            <option value="20">20 دقيقة</option>
-            <option value="30">30 دقيقة</option>
-        </select>
-        <button onclick="suggest()">اقترح نشاط</button>
-        <p id="result"></p>
+        <div class="teacherContent">
+            <select id="lessonTime">
+                <option value="10">10 دقائق</option>
+                <option value="20">20 دقيقة</option>
+                <option value="30">30 دقيقة</option>
+            </select>
+            <button onclick="suggest()">اقترح نشاط</button>
+            <p id="result"></p>
+        </div>
         <button onclick="backHome()">⬅ رجوع للأقسام</button>
     </div>
 
