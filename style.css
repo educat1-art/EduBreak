@@ -1,140 +1,198 @@
-body {
-  margin: 0;
+* {
+  box-sizing: border-box;
   font-family: 'Tajawal', sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  text-align: center;
 }
 
+body {
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* العنوان */
 h1 {
-  font-size: 48px;
-  margin-top: 20px;
+  font-size: 3rem;
+  margin-bottom: 5px;
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: 1.2rem;
   opacity: 0.9;
+  margin-bottom: 15px;
 }
 
 .quote {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
   padding: 15px;
-  margin: 15px auto;
-  width: 90%;
-  border-radius: 15px;
-  font-size: 18px;
+  border-radius: 12px;
+  margin: 20px auto 35px;
+  max-width: 500px;
+  font-size: 1.1rem;
 }
 
+/* شبكة الصفحة الرئيسية */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-  gap: 25px;
-  padding: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
 }
 
+/* البطاقات */
 .card {
-  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-  border-radius: 50%;
-  width: 160px;
-  height: 160px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(145deg, #1f4068, #1b1b2f);
+  border-radius: 22px;
+  padding: 22px 10px;
   cursor: pointer;
-  transition: 0.5s;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 .card:hover {
-  transform: scale(1.2) rotate(8deg);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 .card img {
   width: 70px;
+  height: 70px;
+  margin-bottom: 12px;
 }
 
 .card span {
-  margin-top: 8px;
+  display: block;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
-.teacher {
-  background: linear-gradient(135deg,#f6d365,#fda085);
+.card.teacher {
+  background: linear-gradient(145deg, #8e44ad, #5e3370);
 }
 
+/* إخفاء العناصر */
 .hidden {
   display: none;
 }
 
+/* صفحة الأسئلة */
 #quiz {
-  padding: 20px;
+  max-width: 650px;
+  margin: auto;
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.4);
 }
 
 .top-bar {
-  font-size: 18px;
+  font-size: 1.3rem;
   margin-bottom: 15px;
 }
 
-.option {
-  background: white;
-  color: black;
-  padding: 15px;
-  margin: 10px auto;
-  width: 85%;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.option:hover {
-  background: #e3f2fd;
-  transform: scale(1.05);
-}
-
+/* شريط التقدم */
 #progressBarContainer {
-  width: 90%;
-  height: 18px;
-  background: rgba(255,255,255,0.3);
-  margin: 10px auto;
-  border-radius: 10px;
+  width: 100%;
+  background: rgba(255,255,255,0.15);
+  height: 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 #progressBar {
   height: 100%;
   width: 0%;
-  background: gold;
-  border-radius: 10px;
-  transition: width 0.4s;
-}
-
-#feedback {
-  position: fixed;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background: white;
-  color: black;
-  padding: 30px 40px;
+  background: linear-gradient(90deg, #00f260, #0575e6);
   border-radius: 20px;
-  font-size: 26px;
-  font-weight: bold;
-  z-index: 999;
+  transition: width 0.4s ease;
 }
 
-#feedback.correct {
-  border: 6px solid #4caf50;
+/* السؤال */
+#question {
+  font-size: 1.6rem;
+  margin-bottom: 25px;
 }
 
-#feedback.wrong {
-  border: 6px solid #e53935;
+/* الخيارات */
+#options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
-button {
-  padding: 12px 25px;
-  font-size: 16px;
+.option-btn {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
   border: none;
-  border-radius: 10px;
+  border-radius: 18px;
+  padding: 18px 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
   cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.option-btn:hover {
+  transform: scale(1.07);
+  background: linear-gradient(135deg, #38ef7d, #11998e);
+}
+
+/* Feedback */
+#feedback {
+  margin-top: 25px;
+  font-size: 1.4rem;
+  background: rgba(0,0,0,0.4);
+  padding: 18px;
+  border-radius: 18px;
+}
+
+/* صفحة النتيجة */
+#resultPage {
+  background: rgba(255,255,255,0.08);
+  padding: 40px;
+  border-radius: 25px;
+  max-width: 500px;
+  margin: auto;
+}
+
+#scoreText {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+/* الأزرار */
+button {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  border: none;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* قسم المعلمة */
+#teacher {
+  background: rgba(255,255,255,0.08);
+  padding: 35px;
+  border-radius: 25px;
+  max-width: 500px;
+  margin: auto;
+}
+
+select {
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: none;
+  margin: 15px 0;
+  width: 80%;
 }
