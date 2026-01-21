@@ -8,14 +8,14 @@
 body {
     position: relative;
     min-height: 100vh;
-    color: #222;
     background: linear-gradient(270deg, #f6d365, #fda085, #84fab0, #8fd3f4);
     background-size: 800% 800%;
     animation: gradientBG 20s ease infinite;
+    color: #222;
     overflow-x: hidden;
 }
 
-/* نجوم متحركة */
+/* نجوم */
 #stars {
     position: fixed;
     top: 0;
@@ -67,13 +67,12 @@ body {
 header {
     text-align: center;
     padding: 40px 10px;
-    z-index: 1;
     position: relative;
+    z-index: 1;
 }
 
 header h1 {
     font-size: 40px;
-    margin-bottom: 10px;
     color: #4a6cf7;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -133,7 +132,6 @@ header p {
     display: none;
 }
 
-/* Quiz */
 .quiz-page {
     max-width: 700px;
     margin: auto;
