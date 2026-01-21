@@ -14,7 +14,6 @@
 
 <div class="quote">"التعلم متعة… عندما نحوله إلى لعبة 🎮"</div>
 
-<!-- الصفحة الرئيسية -->
 <div id="home" class="grid">
   <div class="card" onclick="startQuiz('religious')"><img src="mosque.svg"><span>ديني</span></div>
   <div class="card" onclick="startQuiz('culture')"><img src="book.svg"><span>ثقافي</span></div>
@@ -24,7 +23,6 @@
   <div class="card teacher" onclick="showTeacher()"><img src="teacher.svg"><span>للمعلمة</span></div>
 </div>
 
-<!-- صفحة الأسئلة -->
 <div id="quiz" class="hidden">
   <div id="progressBarContainer"><div id="progressBar"></div></div>
   <div class="top-bar">⏱ <span id="time">15</span> ثانية</div>
@@ -32,19 +30,16 @@
   <div id="options"></div>
 </div>
 
-<!-- Feedback -->
 <div id="feedback" class="hidden"></div>
 
-<!-- صفحة النتيجة -->
 <div id="resultPage" class="hidden">
-  <h2 id="finalText"></h2>
+  <h2>🎉 انتهى التحدي</h2>
   <p id="scoreText"></p>
   <button onclick="location.reload()">🔁 إعادة</button>
 </div>
 
-<!-- قسم المعلمة -->
 <div id="teacher" class="hidden">
-  <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
+  <h2>👩‍🏫 اقتراح للمعلمة</h2>
   <select id="lessonTime">
     <option value="10">10 دقائق</option>
     <option value="20">20 دقيقة</option>
@@ -55,11 +50,10 @@
   <button onclick="location.reload()">⬅ رجوع</button>
 </div>
 
-<audio id="winSound" src="win.mp3"></audio>
 <audio id="correctSound" src="correct.mp3"></audio>
 <audio id="wrongSound" src="wrong.mp3"></audio>
+<audio id="winSound" src="win.mp3"></audio>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
