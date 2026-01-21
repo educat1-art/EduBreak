@@ -5,115 +5,156 @@
 
 body {
     margin: 0;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
+    background: linear-gradient(135deg, #f5f7fa, #e4ecf5);
+    color: #222;
+}
+
+header {
     text-align: center;
-    min-height: 100vh;
+    padding: 30px 10px;
+}
+
+header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    color: #555;
+}
+
+.sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.section-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.section-card:hover {
+    transform: translateY(-6px);
+}
+
+.section-card img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+}
+
+.section-card span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.teacher {
+    background: linear-gradient(135deg, #ffe259, #ffa751);
 }
 
 .hidden {
     display: none;
 }
 
-/* الصفحة الرئيسية */
-#homePage {
-    padding: 40px 20px;
-}
-
-.subtitle {
-    margin-bottom: 40px;
-    opacity: 0.9;
-}
-
-.sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 25px;
-    max-width: 900px;
+/* quiz */
+.quiz-page {
+    max-width: 700px;
     margin: auto;
+    padding: 20px;
 }
 
-.section-card {
-    background: #fff;
-    color: #333;
-    border-radius: 25px;
-    padding: 30px 15px;
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz-header button {
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-.section-card:hover {
-    transform: translateY(-10px) scale(1.05);
+#question {
+    margin: 30px 0;
+    font-size: 22px;
 }
 
-.section-card img {
-    width: 80px;
-    height: 80px;
-    background: #f1f3ff;
+.options {
+    display: grid;
+    gap: 12px;
+}
+
+.options button {
     padding: 15px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
-
-.section-card h3 {
-    font-size: 1.3rem;
-}
-
-/* صفحة الاختبار */
-#quizPage {
-    padding: 30px 15px;
-}
-
-.quiz-box {
-    background: #fff;
-    color: #333;
-    max-width: 600px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 25px;
-}
-
-.top {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-}
-
-#options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.option-btn {
-    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    border-radius: 12px;
     border: none;
-    padding: 18px;
-    border-radius: 18px;
-    font-size: 1.1rem;
+    background: white;
+    font-size: 16px;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.option-btn:hover {
-    transform: scale(1.05);
+.options button:hover {
+    background: #eef2ff;
 }
 
-#feedback {
+.feedback {
     margin-top: 20px;
-    font-size: 1.4rem;
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 40px;
 }
 
-.back-btn {
-    margin-bottom: 20px;
-    background: none;
+/* result */
+.result {
+    text-align: center;
+    padding: 40px;
+}
+
+.result h2 {
+    font-size: 30px;
+}
+
+.result p {
+    font-size: 22px;
+}
+
+.result button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border-radius: 12px;
     border: none;
-    color: #fff;
-    font-size: 1.1rem;
-    cursor: pointer;
+    background: #4a6cf7;
+    color: white;
+    font-size: 16px;
 }
 
-/* النتيجة */
-#resultPage {
-    padding: 50px 20px;
+/* teacher */
+.teacher-page {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    padding: 40px;
+}
+
+.teacher-page select,
+.teacher-page button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 16px;
 }
