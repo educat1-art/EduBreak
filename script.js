@@ -1,122 +1,175 @@
-let current = 0;
-let correctCount = 0;
-let allCorrect = true;
-let timeLeft = 15;
-let timer;
-let quizData = [];
-
-const encouragements = ["أحسنت 👏","ممتاز 🌟","رائع 😀","استمر 💪"];
-
 const quizzes = {
   religious: [
-    {q:"ما السورة التي لا تبدأ بالبسملة؟", o:["التوبة","يس","الكهف"], a:0},
-    {q:"كم عدد القراءات المتواترة؟", o:["7","10","5"], a:1},
-    {q:"أطول آية في القرآن؟", o:["الدين","الكرسي","النور"], a:0},
-    {q:"أول من جمع القرآن؟", o:["أبو بكر","عثمان","عمر"], a:0},
-    {q:"عدد أسماء الله الحسنى؟", o:["99","100","88"], a:0}
+    {
+      q: "كم عدد أركان الإسلام؟",
+      options: ["3", "4", "5", "6"],
+      answer: 2
+    }
+  ],
+  culture: [
+    {
+      q: "من هو مؤسس المملكة العربية السعودية؟",
+      options: ["الملك فيصل", "الملك عبدالعزيز", "الملك سعود", "الملك خالد"],
+      answer: 1
+    }
+  ],
+  education: [
+    {
+      q: "ما ناتج 5 × 6 ؟",
+      options: ["30", "11", "25", "35"],
+      answer: 0
+    }
+  ],
+  fun: [
+    {
+      q: "أي حيوان ينام واقفًا؟",
+      options: ["الأسد", "الحصان", "القط", "الكلب"],
+      answer: 1
+    }
+  ],
+  skills: [
+    {
+      q: "أي من التالي مهارة حياتية؟",
+      options: ["الحفظ", "التواصل", "النسخ", "التلقين"],
+      answer: 1
+    }
   ]
 };
 
-function startQuiz(type){
-  quizData = quizzes[type];
-  current = 0;
-  correctCount = 0;
-  allCorrect = true;
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  document.getElementById("progressBar").style.width="0%";
-  nextQuestion();
+let currentQuiz = [];
+let currentIndex = 0;
+let score = 0;
+let timer;
+let timeLeft = 15;
+
+// عناصر الصفحة
+const home = document.getElementById("home");
+const quiz = document.getElementById("quiz");
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const timeEl = document.getElementById("time");
+const feedback = document.getElementById("feedback");
+const resultPage = document.getElementById("resultPage");
+const scoreText = document.getElementById("scoreText");
+const finalText = document.getElementById("finalText");
+const progressBar = document.getElementById("progressBar");
+
+// الأصوات
+const correctSound = document.getElementById("correctSound");
+const wrongSound = document.getElementById("wrongSound");
+const winSound = document.getElementById("winSound");
+
+function startQuiz(type) {
+  currentQuiz = quizzes[type];
+  currentIndex = 0;
+  score = 0;
+
+  home.classList.add("hidden");
+  quiz.classList.remove("hidden");
+
+  loadQuestion();
 }
 
-function nextQuestion(){
-  if(current >= quizData.length){
-    showResult();
-    return;
-  }
-
+function loadQuestion() {
   clearInterval(timer);
-  timeLeft = 15;
-  document.getElementById("time").innerText = timeLeft;
+  feedback.classList.add("hidden");
+  optionsEl.innerHTML = "";
 
-  timer = setInterval(()=>{
-    timeLeft--;
-    document.getElementById("time").innerText = timeLeft;
-    if(timeLeft <= 0){
-      clearInterval(timer);
-      allCorrect = false;
-      showFeedback(false);
-    }
-  },1000);
+  const q = currentQuiz[currentIndex];
+  questionEl.textContent = q.q;
 
-  const q = quizData[current];
-  document.getElementById("question").innerText = q.q;
-  const options = document.getElementById("options");
-  options.innerHTML = "";
-
-  q.o.forEach((opt,i)=>{
-    const btn = document.createElement("div");
-    btn.className = "option";
-    btn.innerText = opt;
-    btn.onclick = ()=>checkAnswer(i === q.a);
-    options.appendChild(btn);
+  q.options.forEach((opt, index) => {
+    const btn = document.createElement("button");
+    btn.textContent = opt;
+    btn.className = "option-btn";
+    btn.onclick = () => checkAnswer(index);
+    optionsEl.appendChild(btn);
   });
+
+  updateProgress();
+  startTimer();
 }
 
-function checkAnswer(correct){
+function startTimer() {
+  timeLeft = 15;
+  timeEl.textContent = timeLeft;
+
+  timer = setInterval(() => {
+    timeLeft--;
+    timeEl.textContent = timeLeft;
+
+    if (timeLeft === 0) {
+      clearInterval(timer);
+      showWrong("⏰ انتهى الوقت");
+    }
+  }, 1000);
+}
+
+function checkAnswer(index) {
   clearInterval(timer);
-  if(correct){
-    correctCount++;
-    document.getElementById("correctSound").play();
-    showFeedback(true);
+
+  if (index === currentQuiz[currentIndex].answer) {
+    score++;
+    showCorrect();
   } else {
-    allCorrect = false;
-    document.getElementById("wrongSound").play();
-    showFeedback(false);
+    showWrong("❌ إجابة خاطئة");
   }
 }
 
-function showFeedback(correct){
-  const fb = document.getElementById("feedback");
-  fb.className = correct ? "correct" : "wrong";
-  fb.innerHTML = correct
-    ? "😀 " + encouragements[Math.floor(Math.random()*encouragements.length)]
-    : "🙁 حاول مرة أخرى";
+function showCorrect() {
+  correctSound.play();
+  feedback.innerHTML = "😀 أحسنت! إجابة صحيحة";
+  feedback.classList.remove("hidden");
 
-  fb.classList.remove("hidden");
+  confetti({
+    particleCount: 120,
+    spread: 80,
+    origin: { y: 0.6 }
+  });
 
-  setTimeout(()=>{
-    fb.classList.add("hidden");
-    current++;
-    document.getElementById("progressBar").style.width =
-      (current/quizData.length*100)+"%";
-    nextQuestion();
-  },1200);
+  next();
 }
 
-function showResult(){
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("resultPage").classList.remove("hidden");
-  document.getElementById("scoreText").innerText =
-    `النتيجة: ${correctCount}/${quizData.length}`;
-
-  if(allCorrect){
-    document.getElementById("finalText").innerText = "🎉 فوز كامل!";
-    document.getElementById("winSound").play();
-    confetti({particleCount:200,spread:80,origin:{y:0.6}});
-  } else {
-    document.getElementById("finalText").innerText = "📘 حاول مرة أخرى";
-  }
+function showWrong(text) {
+  wrongSound.play();
+  feedback.innerHTML = text + "<br>🙁 حاول مرة أخرى";
+  feedback.classList.remove("hidden");
+  next();
 }
 
-function showTeacher(){
-  document.getElementById("home").classList.add("hidden");
+function next() {
+  setTimeout(() => {
+    currentIndex++;
+    if (currentIndex < currentQuiz.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  }, 1800);
+}
+
+function showResult() {
+  quiz.classList.add("hidden");
+  resultPage.classList.remove("hidden");
+
+  winSound.play();
+  finalText.textContent = "🎉 انتهى النشاط";
+  scoreText.textContent = `نتيجتك: ${score} / ${currentQuiz.length}`;
+}
+
+function updateProgress() {
+  const percent = ((currentIndex) / currentQuiz.length) * 100;
+  progressBar.style.width = percent + "%";
+}
+
+// قسم المعلمة
+function showTeacher() {
+  home.classList.add("hidden");
   document.getElementById("teacher").classList.remove("hidden");
 }
 
-function suggest(){
-  const t = document.getElementById("lessonTime").value;
-  const r = document.getElementById("result");
-  if(t==10) r.innerText="⚡ مسابقة سريعة";
-  if(t==20) r.innerText="🎯 نشاط جماعي";
-  if(t==30) r.innerText="🧩 نشاط مهاري + نقاش";
+function suggest() {
+  const time = document.getElementById("lessonTime").value;
+  document.getElementById("result").textContent =
+    `✨ نقترح نشاط تفاعلي مدته ${time} دقائق لتنشيط الطالبات`;
 }
