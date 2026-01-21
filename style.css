@@ -1,13 +1,11 @@
 * {
-    box-sizing: border-box;
-    font-family: 'Tajawal', sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
     position: relative;
 }
@@ -24,8 +22,8 @@ canvas#bgCanvas {
 /* Header */
 header {
     text-align: center;
-    padding: 50px 10px;
     color: #fff;
+    padding: 50px 20px;
     position: relative;
     z-index: 1;
 }
@@ -46,7 +44,7 @@ header .quote {
     font-style: italic;
 }
 
-/* الصفحة الرئيسية الأقسام */
+/* الأقسام */
 .sections {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -58,15 +56,12 @@ header .quote {
 
 .section-card {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 25px;
-    padding: 25px 15px;
+    border-radius: 30px;
+    padding: 25px;
     text-align: center;
     cursor: pointer;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
     transition: 0.4s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .section-card:hover {
@@ -82,7 +77,7 @@ header .quote {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin: auto 0 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -95,14 +90,15 @@ header .quote {
     font-size: 22px;
     font-weight: bold;
     color: #333;
-    text-align: center;
+    display: block;
+    margin-top: 10px;
 }
 
 .teacher .icon {
     background: linear-gradient(135deg, #ffe259, #ffa751);
 }
 
-/* الاختبار */
+/* Quiz */
 .quiz-page {
     max-width: 700px;
     margin: auto;
@@ -127,7 +123,6 @@ header .quote {
     border-radius: 15px;
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 #question {
@@ -162,11 +157,12 @@ header .quote {
     margin-top: 20px;
     font-size: 22px;
     font-weight: bold;
-    min-height: 40px;
     text-align: center;
+    min-height: 40px;
+    color: #333;
 }
 
-/* صفحة النتائج */
+/* Result */
 .result {
     text-align: center;
     padding: 60px;
@@ -200,7 +196,7 @@ header .quote {
     font-weight: bold;
 }
 
-/* قسم المعلمة */
+/* Teacher */
 .teacher-page {
     max-width: 500px;
     margin: auto;
@@ -226,4 +222,8 @@ header .quote {
     background: #ff7f50;
     color: white;
     font-weight: bold;
+}
+
+.hidden {
+    display: none;
 }
