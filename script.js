@@ -1,142 +1,184 @@
-const questions = {
-  religious: [
-    { q: "من هو أول خليفة في الإسلام؟", options: ["أبو بكر", "عمر", "عثمان", "علي"], answer: 0 },
-    { q: "كم عدد ركعات صلاة الفجر؟", options: ["2", "3", "4", "1"], answer: 0 },
-    { q: "ما هي أطول سورة في القرآن؟", options: ["البقرة", "النساء", "آل عمران", "التوبة"], answer: 0 },
-    { q: "أين ولد النبي محمد ﷺ؟", options: ["المدينة", "مكة", "القدس", "بغداد"], answer: 1 },
-    { q: "ما هي أول آية نزلت في القرآن؟", options: ["اقرأ", "الحمد لله", "يس", "التوحيد"], answer: 0 }
-  ],
-  culture: [
-    { q: "ما عاصمة فرنسا؟", options: ["باريس", "لندن", "مدريد", "روما"], answer: 0 },
-    { q: "ما أكبر محيط في العالم؟", options: ["الأطلسي", "الهندي", "الهادئ", "المتجمد الشمالي"], answer: 2 },
-    { q: "كم عدد القارات؟", options: ["5", "6", "7", "8"], answer: 2 },
-    { q: "من كتب رواية 1984؟", options: ["جورج أورويل", "توماس هاردي", "ستيفن كينغ", "ليو تولستوي"], answer: 0 },
-    { q: "ما هي لغة البرازيل الرسمية؟", options: ["الإسبانية", "البرتغالية", "الإنجليزية", "الفرنسية"], answer: 1 }
-  ],
-  education: [
-    { q: "ما ناتج 7×8؟", options: ["54", "56", "64", "49"], answer: 1 },
-    { q: "ما صيغة الماء الكيميائية؟", options: ["H2O", "CO2", "O2", "NaCl"], answer: 0 },
-    { q: "كم عدد الحروف في الأبجدية العربية؟", options: ["28", "26", "30", "32"], answer: 0 },
-    { q: "ما أسرع حيوان بري؟", options: ["الفهد", "الأسد", "الذئب", "الحصان"], answer: 0 },
-    { q: "ما وحدة قياس شدة التيار الكهربائي؟", options: ["أوم", "أمبير", "فولت", "واط"], answer: 1 }
-  ],
-  fun: [
-    { q: "ما لون السماء أثناء النهار؟", options: ["أزرق", "أخضر", "أحمر", "أصفر"], answer: 0 },
-    { q: "ما الحيوان الذي يسمى ملك الغابة؟", options: ["الأسد", "النمر", "الفيل", "الذئب"], answer: 0 },
-    { q: "كم عدد أيام الأسبوع؟", options: ["5", "6", "7", "8"], answer: 2 },
-    { q: "ما اللعبة التي تستخدم لوحة الشطرنج؟", options: ["الدومينو", "الشطرنج", "الكارام", "الورق"], answer: 1 },
-    { q: "كم عدد الكواكب في النظام الشمسي؟", options: ["7", "8", "9", "10"], answer: 1 }
-  ],
-  skills: [
-    { q: "ما مهارة إدارة الوقت؟", options: ["التأجيل", "التخطيط", "الكسل", "التسويف"], answer: 1 },
-    { q: "ما أفضل طريقة لحل المشكلات؟", options: ["التجاهل", "التفكير المنطقي", "القلق", "العشوائية"], answer: 1 },
-    { q: "ما مهارة التواصل الفعال؟", options: ["الإنصات الجيد", "الصمت الدائم", "المقاطعة", "الانتقاد"], answer: 0 },
-    { q: "ما المهارة المتعلقة بالعمل الجماعي؟", options: ["التعاون", "العزلة", "السيطرة", "التشتت"], answer: 0 },
-    { q: "ما مهارة الإبداع؟", options: ["التكرار", "النسخ", "التفكير الابتكاري", "التقليد"], answer: 2 }
-  ]
+/* =============================
+   عناصر الصفحة
+============================= */
+const home = document.getElementById("home");
+const content = document.getElementById("content");
+const sectionTitle = document.getElementById("sectionTitle");
+const questionText = document.getElementById("questionText");
+const optionsDiv = document.getElementById("options");
+const feedback = document.getElementById("feedback");
+const textInput = document.getElementById("textInput");
+const questionBox = document.getElementById("questionBox");
+
+/* =============================
+   بيانات الأسئلة
+============================= */
+
+const mixedActivities = {
+  title: "أنشطة متنوّعة",
+  categories: {
+    religious: {
+      title: "نشاط ديني",
+      questions: [
+        { q: "ما أول سورة في القرآن؟", a: ["البقرة", "الفاتحة", "العلق"], c: 1 },
+        { q: "كم عدد الصلوات المفروضة؟", a: ["4", "5", "6"], c: 1 },
+        { q: "ما اسم ليلة القدر؟", a: ["خير من ألف شهر", "ليلة النور", "ليلة السلام"], c: 0 },
+        { q: "ما قبلة المسلمين؟", a: ["المسجد الأقصى", "المسجد النبوي", "الكعبة"], c: 2 },
+        { q: "ما الركن الأول من أركان الإسلام؟", a: ["الصلاة", "الشهادة", "الزكاة"], c: 1 }
+      ]
+    },
+
+    cultural: {
+      title: "نشاط ثقافي",
+      questions: [
+        { q: "ما عاصمة السعودية؟", a: ["جدة", "الرياض", "مكة"], c: 1 },
+        { q: "كم عدد القارات؟", a: ["5", "6", "7"], c: 2 },
+        { q: "من اخترع الهاتف؟", a: ["نيوتن", "غراهام بيل", "أديسون"], c: 1 },
+        { q: "ما أطول نهر في العالم؟", a: ["النيل", "الأمازون", "الفرات"], c: 0 },
+        { q: "ما لغة البرازيل؟", a: ["الإسبانية", "البرتغالية", "الإنجليزية"], c: 1 }
+      ]
+    },
+
+    educational: {
+      title: "نشاط تعليمي",
+      questions: [
+        { q: "ناتج 6 × 7؟", a: ["42", "36", "48"], c: 0 },
+        { q: "أيهم كوكب؟", a: ["الشمس", "القمر", "المريخ"], c: 2 },
+        { q: "ما وحدة قياس الطول؟", a: ["الكيلو", "المتر", "الجرام"], c: 1 },
+        { q: "كم أضلاع المثلث؟", a: ["2", "3", "4"], c: 1 },
+        { q: "أيهم مادة صلبة؟", a: ["الهواء", "الماء", "الحديد"], c: 2 }
+      ]
+    },
+
+    fun: {
+      title: "نشاط ترفيهي",
+      questions: [
+        { q: "ما الشيء الذي يمشي بلا قدمين؟", a: ["الماء", "الظل", "الوقت"], c: 0 },
+        { q: "ما الشيء الذي نراه ولا نلمسه؟", a: ["الهواء", "الماء", "الحجر"], c: 0 },
+        { q: "ما لونه السماء؟", a: ["أخضر", "أزرق", "أحمر"], c: 1 },
+        { q: "كم يوم في الأسبوع؟", a: ["5", "6", "7"], c: 2 },
+        { q: "ما الحيوان الأسرع؟", a: ["الفهد", "الحصان", "الأسد"], c: 0 }
+      ]
+    },
+
+    skills: {
+      title: "نشاط مهاري",
+      questions: [
+        { q: "أي مهارة تساعد على الحوار؟", a: ["الاستماع", "الصراخ", "التجاهل"], c: 0 },
+        { q: "العمل الجماعي يعني؟", a: ["العمل وحدك", "التعاون", "التنافس"], c: 1 },
+        { q: "إدارة الوقت تعني؟", a: ["التأجيل", "التنظيم", "الإهمال"], c: 1 },
+        { q: "أي سلوك إيجابي؟", a: ["الاحترام", "السخرية", "العناد"], c: 0 },
+        { q: "حل المشكلات يحتاج إلى؟", a: ["تفكير", "عشوائية", "سرعة فقط"], c: 0 }
+      ]
+    },
+
+    teacher: {
+      title: "للـمعلمة",
+      text: "💡 اقترح على الطالبات نشاطًا يناسب زمن الحصة:\n\n- 10 دقائق: سؤال اليوم\n- 20 دقيقة: حوار جماعي\n- 30 دقيقة: تحدي جماعي"
+    }
+  }
 };
 
-let currentQuiz = [];
+/* =============================
+   متغيرات التحكم
+============================= */
+let currentQuestions = [];
 let currentIndex = 0;
 let score = 0;
-let timeLeft = 15;
-let timer;
 
-function startQuiz(section){
-  currentQuiz = questions[section];
-  currentIndex = 0;
-  score = 0;
-  document.getElementById('home').classList.add('hidden');
-  document.getElementById('quiz').classList.remove('hidden');
-  loadQuestion();
-}
+/* =============================
+   التنقل
+============================= */
 
-function loadQuestion(){
-  clearInterval(timer);
-  document.getElementById('feedback').innerHTML = '';
-  if(currentIndex >= currentQuiz.length){
-    showResult();
+function openSection(type) {
+  home.classList.add("hidden");
+  content.classList.remove("hidden");
+
+  if (type === "activities") {
+    showActivitiesMenu();
     return;
   }
-  const questionObj = currentQuiz[currentIndex];
-  document.getElementById('question').innerText = questionObj.q;
 
-  const optionsDiv = document.getElementById('options');
-  optionsDiv.innerHTML = '';
-  questionObj.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
+  loadSimpleSection(type);
+}
+
+function goHome() {
+  content.classList.add("hidden");
+  home.classList.remove("hidden");
+}
+
+/* =============================
+   أنشطة متنوّعة (القائمة)
+============================= */
+
+function showActivitiesMenu() {
+  sectionTitle.innerText = "أنشطة متنوّعة";
+  questionBox.style.display = "none";
+  textInput.style.display = "none";
+  optionsDiv.innerHTML = "";
+  feedback.innerText = "";
+
+  optionsDiv.innerHTML = `
+    <button onclick="startMixed('religious')">ديني</button>
+    <button onclick="startMixed('cultural')">ثقافي</button>
+    <button onclick="startMixed('educational')">تعليمي</button>
+    <button onclick="startMixed('fun')">ترفيهي</button>
+    <button onclick="startMixed('skills')">مهاري</button>
+    <button onclick="showTeacher()">للمعلمة</button>
+  `;
+}
+
+function startMixed(key) {
+  const cat = mixedActivities.categories[key];
+  sectionTitle.innerText = cat.title;
+  currentQuestions = cat.questions;
+  currentIndex = 0;
+  score = 0;
+  questionBox.style.display = "block";
+  showQuestion();
+}
+
+function showTeacher() {
+  sectionTitle.innerText = mixedActivities.categories.teacher.title;
+  questionBox.style.display = "none";
+  optionsDiv.innerHTML = "";
+  textInput.style.display = "block";
+  textInput.value = mixedActivities.categories.teacher.text;
+}
+
+/* =============================
+   عرض الأسئلة
+============================= */
+
+function showQuestion() {
+  const q = currentQuestions[currentIndex];
+  questionText.innerText = q.q;
+  optionsDiv.innerHTML = "";
+  feedback.innerText = "";
+
+  q.a.forEach((opt, i) => {
+    const btn = document.createElement("button");
     btn.innerText = opt;
     btn.onclick = () => checkAnswer(i);
     optionsDiv.appendChild(btn);
   });
-
-  // عداد الوقت
-  timeLeft = 15;
-  document.getElementById('time').innerText = timeLeft;
-  timer = setInterval(()=>{
-    timeLeft--;
-    document.getElementById('time').innerText = timeLeft;
-    if(timeLeft <= 0){
-      clearInterval(timer);
-      checkAnswer(-1);
-    }
-  },1000);
-
-  // تحديث شريط التقدم
-  const progressPercent = ((currentIndex)/currentQuiz.length)*100;
-  document.getElementById('progressBar').style.width = progressPercent + '%';
 }
 
-function checkAnswer(choice){
-  clearInterval(timer);
-  const correct = currentQuiz[currentIndex].answer;
-  const feedbackDiv = document.getElementById('feedback');
-
-  if(choice === correct){
+function checkAnswer(choice) {
+  if (choice === currentQuestions[currentIndex].c) {
     score++;
-    feedbackDiv.innerHTML = '✅ أحسنت! 😀';
-    document.getElementById('correctSound').play();
+    feedback.innerText = "✅ إجابة صحيحة";
   } else {
-    feedbackDiv.innerHTML = '❌ حاول مرة أخرى 🙁';
-    document.getElementById('wrongSound').play();
+    feedback.innerText = "❌ محاولة جيدة";
   }
 
-  currentIndex++;
-  setTimeout(loadQuestion,1000);
-}
-
-function showResult(){
-  document.getElementById('quiz').classList.add('hidden');
-  document.getElementById('resultPage').classList.remove('hidden');
-  document.getElementById('scoreText').innerText = `${score}/5`;
-  if(score === 5){
-    document.getElementById('winSound').play();
-    confetti();
-  }
-}
-
-function backHome(){
-  document.getElementById('quiz').classList.add('hidden');
-  document.getElementById('teacher').classList.add('hidden');
-  document.getElementById('resultPage').classList.add('hidden');
-  document.getElementById('home').classList.remove('hidden');
-}
-
-function showTeacher(){
-  document.getElementById('home').classList.add('hidden');
-  document.getElementById('teacher').classList.remove('hidden');
-}
-
-function suggest(){
-  const time = document.getElementById('lessonTime').value;
-  document.getElementById('result').innerText = `⏱ نشاط مقترح لمدة ${time} دقيقة`;
-}
-
-// confetti عند الفوز
-function confetti(){
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
+  setTimeout(() => {
+    currentIndex++;
+    if (currentIndex < currentQuestions.length) {
+      showQuestion();
+    } else {
+      questionText.innerText = `انتهى النشاط 🎉 نتيجتك ${score}/5`;
+      optionsDiv.innerHTML = "";
+    }
+  }, 700);
 }
