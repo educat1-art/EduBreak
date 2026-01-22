@@ -1,66 +1,52 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
-  <meta charset="UTF-8">
-  <title>EduBreak</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>EduBreak</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>🏆 EduBreak</h1>
-<p class="subtitle">منصة تفاعلية للحصص الاحتياط</p>
-<div class="quote">"التعلم متعة… عندما نحوله إلى لعبة 🎮"</div>
+    <header>
+        <h1>EduBreak</h1>
+        <p>منصة ذكية لاستثمار الحصص الاحتياط – المرحلة المتوسطة</p>
+    </header>
 
-<!-- الصفحة الرئيسية -->
-<div id="home" class="grid">
-  <div class="card" onclick="startQuiz('religious')"><img src="mosque.svg"><span>ديني</span></div>
-  <div class="card" onclick="startQuiz('culture')"><img src="book.svg"><span>ثقافي</span></div>
-  <div class="card" onclick="startQuiz('education')"><img src="brain.svg"><span>تعليمي</span></div>
-  <div class="card" onclick="startQuiz('fun')"><img src="game.svg"><span>ترفيهي</span></div>
-  <div class="card" onclick="startQuiz('skills')"><img src="handshake.svg"><span>مهاري</span></div>
-  <div class="card teacher" onclick="showTeacher()"><img src="teacher.svg"><span>للمعلمة</span></div>
-</div>
+    <!-- الصفحة الرئيسية -->
+    <section id="home" class="grid">
 
-<!-- صفحة الأسئلة -->
-<div id="quiz" class="hidden">
-  <button class="backBtn" onclick="backHome()">⬅ الأقسام</button>
-  <div id="progressBarContainer"><div id="progressBar"></div></div>
-  <div class="top-bar">⏱ <span id="time">15</span> ثانية</div>
-  <h2 id="question"></h2>
-  <div id="options"></div>
-  <div id="feedback"></div>
-</div>
+        <div class="card" onclick="openSection('daily')">🧩<span>سؤال اليوم</span></div>
+        <div class="card" onclick="openSection('smart')">🧠<span>اختبر ذكاءك</span></div>
+        <div class="card" onclick="openSection('dialog')">💬<span>حوار جماعي</span></div>
+        <div class="card" onclick="openSection('challenge')">🏆<span>تحديات جماعية</span></div>
+        <div class="card" onclick="openSection('idea')">💡<span>فكرة اليوم</span></div>
+        <div class="card" onclick="openSection('success')">🌱<span>يوميات نجاح</span></div>
+        <div class="card" onclick="openSection('story')">📖<span>قصة قصيرة</span></div>
+        <div class="card" onclick="openSection('minute')">⏱️<span>تحدي الدقيقة</span></div>
 
-<!-- صفحة النتيجة -->
-<div id="resultPage" class="hidden">
-  <h2 id="finalText">🎉 النتيجة النهائية</h2>
-  <p id="scoreText"></p>
-  <button onclick="backHome()">🔁 رجوع للأقسام</button>
-</div>
+    </section>
 
-<!-- قسم المعلمة -->
-<div id="teacher" class="hidden">
-  <h2>👩‍🏫 اقتراح ذكي للمعلمة</h2>
-  <div class="teacherContent">
-    <select id="lessonTime">
-      <option value="10">10 دقائق</option>
-      <option value="20">20 دقيقة</option>
-      <option value="30">30 دقيقة</option>
-    </select>
-    <button onclick="suggest()">اقترح نشاط</button>
-    <p id="result"></p>
-  </div>
-  <button onclick="backHome()">⬅ رجوع للأقسام</button>
-</div>
+    <!-- صفحة المحتوى -->
+    <section id="content" class="hidden">
+        <button class="back" onclick="goHome()">⬅ رجوع</button>
+        <h2 id="sectionTitle"></h2>
 
-<!-- الأصوات -->
-<audio id="winSound" src="win.mp3"></audio>
-<audio id="correctSound" src="correct.mp3"></audio>
-<audio id="wrongSound" src="wrong.mp3"></audio>
+        <!-- سؤال -->
+        <div id="questionBox">
+            <p id="questionText"></p>
+            <div id="options"></div>
+            <p id="feedback"></p>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="script.js"></script>
+        <!-- إدخال نص -->
+        <textarea id="textInput" placeholder="اكتبي هنا..."></textarea>
+    </section>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
