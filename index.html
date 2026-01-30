@@ -231,8 +231,26 @@
                 ideasList = document.getElementById("ideasList");
 
             // الأصوات
-            function hover() { }
-            function click() { }
+            const wrongSound = new Audio("wrongSound.mp3");
+            const correctSound = new Audio("correctSound.mp3");
+            const clickSound = new Audio("clickSound.mp3");
+            const winSound = new Audio("winSound.mp3");
+
+            // قص winSound لمدة ثانيتين
+            winSound.addEventListener('loadedmetadata', () => {
+                if (winSound.duration > 2) {
+                    winSound.ontimeupdate = () => {
+                        if (winSound.currentTime >= 2) winSound.pause();
+                    };
+                }
+            });
+
+            function click() { clickSound.play(); }
+            function playAnswerSound(isCorrect) {
+                if (isCorrect) correctSound.play();
+                else wrongSound.play();
+            }
+
             function goHome() { document.querySelectorAll(".container>div").forEach(d => d.classList.add("hidden")); home.classList.remove("hidden"); }
             function goHomeChallenges() { goHome(); newChallenge(); }
             function shuffle(a) { return a.sort(() => Math.random() - .5); }
@@ -287,14 +305,14 @@
                 showQ();
             }
             function showQ() {
-                if (i >= list.length) { alert("نتيجتك " + score + "/" + list.length); goHome(); return; }
+                if (i >= list.length) { winSound.play(); alert("نتيجتك " + score + "/" + list.length); goHome(); return; }
                 let q = list[i]; question.textContent = q.q; options.innerHTML = "";
                 q.o.forEach((x, ix) => {
                     let b = document.createElement("button"); b.textContent = x;
                     b.onclick = () => {
                         if (b.disabled) return;
-                        if (ix === q.c) { b.classList.add("correct"); score++; }
-                        else { b.classList.add("wrong"); options.children[q.c].classList.add("correct"); }
+                        if (ix === q.c) { b.classList.add("correct"); score++; playAnswerSound(true); }
+                        else { b.classList.add("wrong"); options.children[q.c].classList.add("correct"); playAnswerSound(false); }
                         Array.from(options.children).forEach(btn => btn.disabled = true);
                         scoreDiv.textContent = score + "/" + list.length;
                         setTimeout(() => { i++; showQ(); }, 1000);
@@ -313,8 +331,8 @@
                     let b = document.createElement("button"); b.textContent = x;
                     b.onclick = () => {
                         if (b.disabled) return;
-                        if (x === q.a) { b.classList.add("correct"); scoreDiv.textContent = "1/1"; }
-                        else { b.classList.add("wrong"); options.children[0].classList.add("correct"); scoreDiv.textContent = "1/0"; }
+                        if (x === q.a) { b.classList.add("correct"); scoreDiv.textContent = "1/1"; playAnswerSound(true); }
+                        else { b.classList.add("wrong"); options.children[0].classList.add("correct"); scoreDiv.textContent = "1/0"; playAnswerSound(false); }
                         Array.from(options.children).forEach(btn => btn.disabled = true);
                     };
                     options.appendChild(b);
@@ -330,8 +348,8 @@
                     let b = document.createElement("button"); b.textContent = x;
                     b.onclick = () => {
                         if (b.disabled) return;
-                        if (x === q.a) { b.classList.add("correct"); scoreDiv.textContent = "1/1"; }
-                        else { b.classList.add("wrong"); options.children[0].classList.add("correct"); scoreDiv.textContent = "1/0"; }
+                        if (x === q.a) { b.classList.add("correct"); scoreDiv.textContent = "1/1"; playAnswerSound(true); }
+                        else { b.classList.add("wrong"); options.children[0].classList.add("correct"); scoreDiv.textContent = "1/0"; playAnswerSound(false); }
                         Array.from(options.children).forEach(btn => btn.disabled = true);
                     };
                     options.appendChild(b);
@@ -348,11 +366,11 @@
             const challengesArr = ["اذكري 5 كلمات صفة لا تبدأ بنفس الحرف", "اذكري أكبر عدد ممكن من الكلمات تبدأ بحرف م", "اذكر 3 بلدان عربية تبدا بحرف الميم"];
             function openChallenges() { click(); goHome(); challengesDiv.classList.remove("hidden"); newChallenge(); }
             function newChallenge() { challengeText.textContent = challengesArr[Math.floor(Math.random() * challengesArr.length)]; winner.textContent = ""; winnerSelect.innerHTML = ""; for (let j = 1; j <= teams.value; j++) { let opt = document.createElement("option"); opt.value = "الفريق " + j; opt.textContent = "الفريق " + j; winnerSelect.appendChild(opt); } }
-            function setWinner() { winner.textContent = "الفريق الفائز: " + winnerSelect.value; }
+            function setWinner() { winner.textContent = "الفريق الفائز: " + winnerSelect.value; winSound.play(); }
 
             // --- فكرة اليوم ---
             function openIdea() { click(); goHome(); ideaDiv.classList.remove("hidden"); }
-            function saveIdea() { if (!ideaText.value) return; let li = document.createElement("li"); li.textContent = ideaText.value; ideasList.appendChild(li); ideaText.value = ""; }
+            function saveIdea() { if (!ideaText.value) return; let li = document.createElement("li"); li.textContent = ideaText.value; ideasList.appendChild(li); ideaText.value = ""; clickSound.play(); }
         </script>
 
 </body>
