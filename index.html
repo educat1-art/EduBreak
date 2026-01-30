@@ -6,7 +6,7 @@
     <title>منصة الأنشطة التعليمية</title>
     <style>
         body {
-            font-family: "Tahoma", Arial;
+            font-family: Tahoma, Arial;
             background: #f3f4f6;
             margin: 0;
         }
@@ -14,7 +14,7 @@
         header {
             background: #1e293b;
             color: #fff;
-            padding: 15px;
+            padding: 16px;
             text-align: center;
             font-size: 22px;
         }
@@ -31,25 +31,36 @@
 
         .card {
             background: #fff;
-            border-radius: 16px;
+            border-radius: 18px;
             padding: 25px;
             text-align: center;
             cursor: pointer;
-            font-size: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
             transition: .3s;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, .25);
+            transform: translateY(-6px) scale(1.03);
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .card span {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
         }
 
         .hidden {
             display: none;
         }
 
-        button {
+        button,
+        select {
             padding: 10px 18px;
             border: none;
             border-radius: 12px;
@@ -57,10 +68,11 @@
             background: #2563eb;
             color: #fff;
             font-size: 16px;
-            transition: 0.3s;
+            margin-top: 5px;
         }
 
-        button:hover {
+        button:hover,
+        select:hover {
             opacity: .9;
         }
 
@@ -74,7 +86,7 @@
         .quiz-box {
             background: #fff;
             padding: 20px;
-            border-radius: 14px;
+            border-radius: 16px;
             box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
         }
 
@@ -85,8 +97,14 @@
             color: #000;
         }
 
-        .options button:hover {
-            background: #c7d2fe;
+        .options button.correct {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .options button.wrong {
+            background: #ef4444;
+            color: #fff;
         }
 
         .timer {
@@ -101,61 +119,40 @@
         textarea {
             width: 100%;
             height: 120px;
-            border-radius: 14px;
+            border-radius: 12px;
             padding: 12px;
             font-size: 16px;
         }
 
-        /* تحسينات الحوار الجماعي */
-        #discussion .quiz-box {
-            background: linear-gradient(145deg, #e0f2fe, #dbeafe);
-            border: 2px solid #3b82f6;
+        footer {
             text-align: center;
-            font-size: 18px;
-        }
-
-        #discussion button {
-            margin: 8px 4px;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 10px;
-        }
-
-        #modeText {
-            font-weight: bold;
-            font-size: 16px;
-            color: #1e40af;
-        }
-
-        #discussionQ {
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 15px;
+            margin-top: 20px;
+            color: #555;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
-    <header>منصة الأنشطة التعليمية</header>
 
+    <header>🎓 منصة الأنشطة التعليمية</header>
     <div class="container">
 
         <!-- الصفحة الرئيسية -->
         <div id="home" class="cards">
-            <div class="card" onclick="openActivities()">🎯 أنشطة متنوعة</div>
-            <div class="card" onclick="openDaily()">🧠 سؤال اليوم</div>
-            <div class="card" onclick="openMind()">🧩 اختبر ذكاءك</div>
-            <div class="card" onclick="openDiscussion()">💬 حوار جماعي</div>
-            <div class="card" onclick="openChallenges()">🏆 تحديات جماعية</div>
-            <div class="card" onclick="openIdea()">💡 فكرة اليوم</div>
+            <div class="card" onclick="openActivities()"><img src="images/activities.svg"><span>أنشطة متنوعة</span>
+            </div>
+            <div class="card" onclick="openDaily()"><img src="images/daily.svg"><span>سؤال اليوم</span></div>
+            <div class="card" onclick="openMind()"><img src="images/mind.svg"><span>اختبر ذكاءك</span></div>
+            <div class="card" onclick="openDiscussion()"><img src="images/discussion.svg"><span>حوار جماعي</span></div>
+            <div class="card" onclick="openChallenges()"><img src="images/challenges.svg"><span>تحديات جماعية</span>
+            </div>
+            <div class="card" onclick="openIdea()"><img src="images/idea.svg"><span>فكرة اليوم</span></div>
         </div>
 
         <!-- الأنشطة المتنوعة -->
         <div id="activities" class="hidden">
-            <div class="top">
-                <button onclick="goHome()">⬅ رجوع</button>
-                <b>أنشطة متنوعة</b>
-            </div>
+            <div class="top"><button onclick="goHome()">⬅ رجوع</button><b>أنشطة متنوعة</b></div>
             <div class="cards">
                 <div class="card" onclick="startActivity('cultural')">ثقافي</div>
                 <div class="card" onclick="startActivity('religious')">ديني</div>
@@ -165,81 +162,82 @@
             </div>
         </div>
 
-        <!-- صندوق الأسئلة -->
+        <!-- الكويز -->
         <div id="quiz" class="hidden">
             <div class="top">
                 <button onclick="goHome()">⬅ رجوع</button>
-                <div class="timer" id="timer"></div>
                 <div class="score" id="score"></div>
             </div>
             <div class="quiz-box">
                 <div id="question" style="font-size:20px;margin-bottom:15px"></div>
-                <div class="options" id="options"></div>
+                <div id="options" class="options"></div>
             </div>
         </div>
 
         <!-- الحوار الجماعي -->
         <div id="discussion" class="hidden">
-            <div class="top">
-                <button onclick="goHome()">⬅ رجوع</button>
-                <b>حوار جماعي</b>
-            </div>
+            <div class="top"><button onclick="goHome()">⬅ رجوع</button><b>حوار جماعي</b></div>
             <div class="quiz-box">
-                <div id="discussionQ"></div>
-                <div>
-                    <button onclick="talkAction(true)">🎤 ابدئي الحوار</button>
-                    <button onclick="talkAction(false)">⏹ انتهيت</button>
-                </div><br>
-                <div>
-                    <button onclick="setMode('جماعي')">👥 جماعي</button>
-                    <button onclick="setMode('فردي')">👤 فردي</button>
+                <div id="discussionQ" style="font-size:20px;margin-bottom:15px"></div>
+                <div style="margin-top:10px;">
+                    <button onclick="nextDiscussion()">➡ السؤال التالي</button>
                 </div>
-                <div id="modeText"></div>
             </div>
         </div>
 
         <!-- التحديات الجماعية -->
         <div id="challenges" class="hidden">
-            <div class="top">
-                <button onclick="goHome()">⬅ رجوع</button>
-                <b>تحديات جماعية</b>
-            </div>
+            <div class="top"><button onclick="goHomeChallenges()">⬅ رجوع</button><b>تحديات جماعية</b></div>
             <div class="quiz-box">
                 <div id="challengeText" style="font-size:20px"></div><br>
-                عدد الفرق:
-                <input type="number" id="teams" value="2" min="2" max="5">
-                <button onclick="startChallenge()">ابدأ</button>
-                <div id="teamsArea"></div>
-                <div id="winner" style="font-weight:bold;color:green;margin-top:10px"></div>
+                عدد الفرق: <input type="number" id="teams" value="2" min="2" max="5">
+                <div style="margin-top:10px;">
+                    اختر الفريق الفائز:
+                    <select id="winnerSelect"></select>
+                    <button onclick="setWinner()">✅ تحديد الفائز</button>
+                </div>
+                <div id="winner" style="margin-top:10px;font-weight:bold;color:green"></div>
             </div>
         </div>
 
         <!-- فكرة اليوم -->
         <div id="idea" class="hidden">
-            <div class="top">
-                <button onclick="goHome()">⬅ رجوع</button>
-                <b>فكرة اليوم</b>
-            </div>
+            <div class="top"><button onclick="goHome()">⬅ رجوع</button><b>فكرة اليوم</b></div>
             <div class="quiz-box">
-                <textarea id="ideaText" placeholder="اكتبي فكرة مشروع صغير..."></textarea><br><br>
-                <button onclick="saveIdea()">🌟 أعجبتني الفكرة</button>
+                <textarea id="ideaText" placeholder="اكتب فكرة مشروع..."></textarea><br><br>
+                <button onclick="saveIdea()">🌟 حفظ الفكرة</button>
                 <ul id="ideasList"></ul>
             </div>
         </div>
 
-        <!-- الأصوات -->
-        <audio id="correct" src="correct.mp3"></audio>
-        <audio id="wrong" src="wrong.mp3"></audio>
+        <footer>منصة الأنشطة التعليمية © 2026</footer>
 
         <script>
-            /* أدوات عامة */
-            function goHome() {
-                document.querySelectorAll(".container > div").forEach(d => d.classList.add("hidden"));
-                document.getElementById("home").classList.remove("hidden");
-            }
-            function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
+            const home = document.getElementById("home"),
+                activitiesDiv = document.getElementById("activities"),
+                quiz = document.getElementById("quiz"),
+                question = document.getElementById("question"),
+                options = document.getElementById("options"),
+                scoreDiv = document.getElementById("score"),
+                discussionDiv = document.getElementById("discussion"),
+                discussionQ = document.getElementById("discussionQ"),
+                challengesDiv = document.getElementById("challenges"),
+                challengeText = document.getElementById("challengeText"),
+                winnerSelect = document.getElementById("winnerSelect"),
+                winner = document.getElementById("winner"),
+                teams = document.getElementById("teams"),
+                ideaDiv = document.getElementById("idea"),
+                ideaText = document.getElementById("ideaText"),
+                ideasList = document.getElementById("ideasList");
 
-            /* ========= البيانات ========= */
+            // الأصوات
+            function hover() { }
+            function click() { }
+            function goHome() { document.querySelectorAll(".container>div").forEach(d => d.classList.add("hidden")); home.classList.remove("hidden"); }
+            function goHomeChallenges() { goHome(); newChallenge(); }
+            function shuffle(a) { return a.sort(() => Math.random() - .5); }
+
+            // --- الأنشطة المتنوعة ---
             const activities = {
                 cultural: [
                     { q: "عاصمة مصر؟", o: ["القاهرة", "الجيزة", "الإسكندرية"], c: 0 },
@@ -253,7 +251,7 @@
                     { q: "عدد الصلوات؟", o: ["3", "5", "6"], c: 1 },
                     { q: "قبلة المسلمين؟", o: ["مكة", "المدينة", "القدس"], c: 0 },
                     { q: "شهر الصيام؟", o: ["رمضان", "شوال", "رجب"], c: 0 },
-                    { q: "أول سورة؟", o: ["العلق", "الفاتحة", "البقرة"], c: 0 }
+                    { q: "أول سورة نزلت؟", o: ["العلق", "الفاتحة", "البقرة"], c: 0 }
                 ],
                 fun: [
                     { q: "يمشي بلا قدمين؟", o: ["الماء", "الظل", "الهواء"], c: 0 },
@@ -278,165 +276,85 @@
                 ]
             };
 
-            const daily = [
-                { q: "أكبر كوكب؟", a: "المشتري", w: ["الأرض", "المريخ"] },
-                { q: "أصغر قارة؟", a: "أستراليا", w: ["أوروبا", "أفريقيا"] },
-                { q: "عدد القارات؟", a: "7", w: ["5", "6"] },
-                { q: "أطول عظم؟", a: "الفخذ", w: ["الذراع", "الساق"] },
-                { q: "أسرع حيوان؟", a: "الفهد", w: ["الأسد", "النمر"] }
-            ];
-
-            const mind = [
-                { q: "يمشي بلا قدمين؟", a: "الماء", w: ["الريح", "الظل"] },
-                { q: "يولد كبيرًا ويصغر؟", a: "الشمعة", w: ["الإنسان", "الشجرة"] },
-                { q: "له رأس بلا عين؟", a: "الدبوس", w: ["الإبرة", "المسمار"] },
-                { q: "ما هو الشيء إذا أخذت منه كبر؟", a: "الحفرة", w: ["الكتاب", "الماء"] },
-                { q: "أبيض وأسود ويقرأ؟", a: "الصحيفة", w: ["الزرافة", "الحمار"] }
-            ];
-
-            const discussions = [
-                "لو صنعت تطبيقًا للمدرسة ماذا يفعل؟",
-                "كيف نجعل الصف أكثر متعة؟",
-                "فكرة نشاط جماعي مبتكر؟",
-                "كيف نساعد زملاءنا؟",
-                "اقتراح لتطوير المدرسة؟"
-            ];
-
-            const challengesArr = [
-                "صمموا لعبة تعليمية خلال 5 دقائق",
-                "حل لغز جماعي بأسرع وقت",
-                "ابتكروا فكرة بيئية",
-                "رتبوا خطوات تجربة علمية",
-                "ابنوا قصة قصيرة جماعية"
-            ];
-
-            /* ========= منطق التشغيل ========= */
             let list = [], i = 0, score = 0;
 
-            /* أنشطة */
-            function openActivities() { goHome(); document.getElementById("activities").classList.remove("hidden"); }
+            function openActivities() { click(); goHome(); activitiesDiv.classList.remove("hidden"); }
             function startActivity(type) {
-                list = shuffle([...activities[type]]);
+                click();
+                list = [...activities[type]]; // ترتيب ثابت
                 i = 0; score = 0;
-                document.getElementById("score").textContent = "0/5";
+                quiz.classList.remove("hidden");
                 showQ();
-                goHome(); document.getElementById("quiz").classList.remove("hidden");
             }
             function showQ() {
-                if (i >= 5) { alert(`نتيجتك ${score} من 5`); goHome(); return; }
-                let q = list[i];
-                document.getElementById("question").textContent = q.q;
-                let o = document.getElementById("options"); o.innerHTML = "";
+                if (i >= list.length) { alert("نتيجتك " + score + "/" + list.length); goHome(); return; }
+                let q = list[i]; question.textContent = q.q; options.innerHTML = "";
                 q.o.forEach((x, ix) => {
-                    let b = document.createElement("button");
-                    b.textContent = x;
-                    b.onclick = () => { check(ix === q.c) };
-                    o.appendChild(b);
+                    let b = document.createElement("button"); b.textContent = x;
+                    b.onclick = () => {
+                        if (b.disabled) return;
+                        if (ix === q.c) { b.classList.add("correct"); score++; }
+                        else { b.classList.add("wrong"); options.children[q.c].classList.add("correct"); }
+                        Array.from(options.children).forEach(btn => btn.disabled = true);
+                        scoreDiv.textContent = score + "/" + list.length;
+                        setTimeout(() => { i++; showQ(); }, 1000);
+                    };
+                    options.appendChild(b);
                 });
             }
-            function check(ok) {
-                document.getElementById(ok ? "correct" : "wrong").play();
-                if (ok) score++;
-                i++;
-                document.getElementById("score").textContent = `${score}/5`;
-                showQ();
-            }
 
-            /* سؤال اليوم */
-            let d = 0;
-            function openDaily() {
-                goHome(); document.getElementById("quiz").classList.remove("hidden");
-                showDaily();
-            }
+            // --- سؤال اليوم ثابت ---
+            const daily = [{ q: "أكبر كوكب؟", a: "المشتري", w: ["الأرض", "المريخ"] }];
+            function openDaily() { click(); goHome(); quiz.classList.remove("hidden"); showDaily(); }
             function showDaily() {
-                let q = daily[d];
-                let arr = shuffle([q.a, ...q.w]);
-                document.getElementById("question").textContent = q.q;
-                let o = document.getElementById("options"); o.innerHTML = "";
+                let q = daily[0];
+                let arr = [q.a, ...q.w]; question.textContent = q.q; options.innerHTML = ""; scoreDiv.textContent = "0/1";
                 arr.forEach(x => {
-                    let b = document.createElement("button");
-                    b.textContent = x;
+                    let b = document.createElement("button"); b.textContent = x;
                     b.onclick = () => {
-                        if (x === q.a) { document.getElementById("correct").play(); alert("✅ إجابة صحيحة!"); }
-                        else { document.getElementById("wrong").play(); alert("❌ إجابة خاطئة!"); }
-                        d = (d + 1) % daily.length;
-                        showDaily();
+                        if (b.disabled) return;
+                        if (x === q.a) { b.classList.add("correct"); scoreDiv.textContent = "1/1"; }
+                        else { b.classList.add("wrong"); options.children[0].classList.add("correct"); scoreDiv.textContent = "1/0"; }
+                        Array.from(options.children).forEach(btn => btn.disabled = true);
                     };
-                    o.appendChild(b);
+                    options.appendChild(b);
                 });
             }
 
-            /* اختبر ذكاءك */
-            let m = 0;
-            function openMind() {
-                goHome(); document.getElementById("quiz").classList.remove("hidden");
-                showMind();
-            }
+            // --- ذكاء ثابت ---
+            const mind = [{ q: "يمشي بلا قدمين؟", a: "الماء", w: ["الريح", "الظل"] }];
+            function openMind() { click(); goHome(); quiz.classList.remove("hidden"); showMind(); }
             function showMind() {
-                let q = mind[m];
-                let arr = shuffle([q.a, ...q.w]);
-                document.getElementById("question").textContent = q.q;
-                let o = document.getElementById("options"); o.innerHTML = "";
+                let q = mind[0]; let arr = [q.a, ...q.w]; question.textContent = q.q; options.innerHTML = ""; scoreDiv.textContent = "0/1";
                 arr.forEach(x => {
-                    let b = document.createElement("button");
-                    b.textContent = x;
+                    let b = document.createElement("button"); b.textContent = x;
                     b.onclick = () => {
-                        if (x === q.a) { document.getElementById("correct").play(); alert("✅ إجابة صحيحة!"); }
-                        else { document.getElementById("wrong").play(); alert("❌ إجابة خاطئة!"); }
-                        m = (m + 1) % mind.length;
-                        showMind();
+                        if (b.disabled) return;
+                        if (x === q.a) { b.classList.add("correct"); scoreDiv.textContent = "1/1"; }
+                        else { b.classList.add("wrong"); options.children[0].classList.add("correct"); scoreDiv.textContent = "1/0"; }
+                        Array.from(options.children).forEach(btn => btn.disabled = true);
                     };
-                    o.appendChild(b);
+                    options.appendChild(b);
                 });
             }
 
-            /* الحوار */
-            let h = 0;
-            function openDiscussion() {
-                goHome(); document.getElementById("discussion").classList.remove("hidden");
-                document.getElementById("discussionQ").textContent = discussions[h];
-            }
-            function talkAction(correct) {
-                if (correct) document.getElementById("correct").play();
-                else document.getElementById("wrong").play();
-                alert(correct ? "✅ تم البدء!" : "❌ انتهى الحوار!");
-                h = (h + 1) % discussions.length;
-                document.getElementById("discussionQ").textContent = discussions[h];
-            }
-            function setMode(m) { document.getElementById("modeText").textContent = "الوضع: " + m }
+            // --- الحوار الجماعي ---
+            let discussions = ["لو صنعت تطبيقًا للمدرسة ماذا يفعل؟", "كيف نجعل الصف أكثر متعة؟", "فكرة نشاط جماعي مبتكر؟", "كيف نساعد زملاءنا؟", "اقتراح لتطوير المدرسة؟"];
+            let currentDiscussion = 0;
+            function openDiscussion() { click(); goHome(); discussionDiv.classList.remove("hidden"); currentDiscussion = 0; discussionQ.textContent = discussions[currentDiscussion]; }
+            function nextDiscussion() { currentDiscussion = (currentDiscussion + 1) % discussions.length; discussionQ.textContent = discussions[currentDiscussion]; }
 
-            /* التحديات */
-            let c = 0;
-            function openChallenges() {
-                goHome(); document.getElementById("challenges").classList.remove("hidden");
-                document.getElementById("challengeText").textContent = challengesArr[c];
-                c = (c + 1) % challengesArr.length;
-            }
-            function startChallenge() {
-                let n = document.getElementById("teams").value;
-                let a = document.getElementById("teamsArea"); a.innerHTML = "";
-                for (let i = 1; i <= n; i++) {
-                    let b = document.createElement("button");
-                    b.textContent = "فريق " + i;
-                    b.onclick = () => { document.getElementById("winner").textContent = "🏆 الفائز: فريق " + i; document.getElementById("correct").play() };
-                    a.appendChild(b);
-                }
-            }
+            // --- التحديات ---
+            const challengesArr = ["اذكري 5 كلمات صفة لا تبدأ بنفس الحرف", "اذكري أكبر عدد ممكن من الكلمات تبدأ بحرف م", "اذكر 3 بلدان عربية تبدا بحرف الميم"];
+            function openChallenges() { click(); goHome(); challengesDiv.classList.remove("hidden"); newChallenge(); }
+            function newChallenge() { challengeText.textContent = challengesArr[Math.floor(Math.random() * challengesArr.length)]; winner.textContent = ""; winnerSelect.innerHTML = ""; for (let j = 1; j <= teams.value; j++) { let opt = document.createElement("option"); opt.value = "الفريق " + j; opt.textContent = "الفريق " + j; winnerSelect.appendChild(opt); } }
+            function setWinner() { winner.textContent = "الفريق الفائز: " + winnerSelect.value; }
 
-            /* فكرة اليوم */
-            function openIdea() { goHome(); document.getElementById("idea").classList.remove("hidden"); }
-            function saveIdea() {
-                let t = document.getElementById("ideaText");
-                if (!t.value) return;
-                let li = document.createElement("li");
-                li.textContent = t.value;
-                document.getElementById("ideasList").appendChild(li);
-                document.getElementById("correct").play();
-                t.value = "";
-            }
+            // --- فكرة اليوم ---
+            function openIdea() { click(); goHome(); ideaDiv.classList.remove("hidden"); }
+            function saveIdea() { if (!ideaText.value) return; let li = document.createElement("li"); li.textContent = ideaText.value; ideasList.appendChild(li); ideaText.value = ""; }
         </script>
 
-    </div>
 </body>
 
 </html>
