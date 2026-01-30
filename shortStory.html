@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموقع التعليمي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="home">
+        <h1>الأنشطة التعليمية</h1>
+        <div class="grid">
+            <button onclick="openPage('activities.html')">أنشطة متنوعه</button>
+            <button onclick="openPage('dailyQuestion.html')">سؤال اليوم / لغز اليوم</button>
+            <button onclick="openPage('testYourMind.html')">اختبر ذكائك</button>
+            <button onclick="openPage('groupDiscussion.html')">حوار جماعي</button>
+            <button onclick="openPage('challenges.html')">تحديات جماعية</button>
+            <button onclick="openPage('ideaOfDay.html')">فكرة اليوم</button>
+            <button onclick="openPage('successDiary.html')">يوميات نجاح</button>
+            <button onclick="openPage('shortStory.html')">قصة قصيرة</button>
+            <button onclick="openPage('oneMinuteChallenge.html')">تحدي الدقيقة الواحدة</button>
+        </div>
+    </div>
+
+    <script>
+        function openPage(url) {
+            window.location.href = url; // فتح صفحة منفصلة
+        }
+    </script>
+</body>
+
+</html>
